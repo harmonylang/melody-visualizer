@@ -1,12 +1,12 @@
-import { Card, PageHeader, Tree } from "antd";
-import { DownOutlined, ExclamationCircleOutlined, ProjectOutlined } from "@ant-design/icons";
+import { PageHeader } from "antd";
+import { ExclamationCircleOutlined } from "@ant-design/icons";
 import Layout, { Content } from "antd/lib/layout/layout";
 import SplitPane from "react-split-pane";
 import { CharmonySlice, CharmonyTopLevel, ExecutionPath } from "../types/CharmonyJson";
 import './Timeline.css'
 import AssemblyCard from "./AssemblyCard";
 import TimelineEditor from "./TimelineEditor";
-import React, { Key } from "react";
+import React from "react";
 import SharedVariableCard from "./SharedVariableCard";
 import StackTraceTable from "./StackTraceTable";
 
@@ -44,7 +44,6 @@ class Timeline extends React.Component<TimelineProps, TimelineState> {
                 currentSlice: currentSlice
             });
         }
-
     }
 
     render() {

@@ -1,7 +1,6 @@
 import { DownOutlined, ProjectOutlined } from "@ant-design/icons";
 import { Card, Tree } from "antd";
 import React from "react";
-import './AssemblyCard.css'
 
 interface SharedVariableCardState {
     sharedValues: VariableTreeType[];
@@ -25,7 +24,7 @@ class SharedVariableCard extends React.Component<SharedVariableCardProps, Shared
             let convertedTree: VariableTreeType;
             if (v == null || typeof v !== 'object') {
                 convertedTree = {
-                    title: `${k}: ${v}`,
+                    title: `${k}: ${this.formatVariableValue(v)}`,
                     key: k,
                     children: []
                 };
@@ -41,6 +40,26 @@ class SharedVariableCard extends React.Component<SharedVariableCardProps, Shared
         this.state = {
             sharedValues: treeify(this.props.sharedVariables)
         };
+    }
+
+    formatVariableValue(v: any) {
+        const typeofV = typeof v;
+        if (typeofV === "string") {
+            if (v.startsWith("?")) {
+                return `${v}`;
+            } else {
+                return `"${v}"`;
+            }
+        }
+        if (typeofV === "boolean" || typeofV === "number") {
+            const s = v.toString()
+            return s[0].toUpperCase() + s.substring(1);
+        }
+        if (v == null) {
+            return 'None';
+        } else {
+            return JSON.stringify(v);
+        }
     }
 
     render() {

@@ -12,6 +12,8 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+    right: 0;
+    position: absolute;
 }
 
 .assembly-card {

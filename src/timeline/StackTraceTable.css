@@ -1,0 +1,18 @@
+.stacktrace-table {
+    position: absolute;
+    left: 6px;
+    right: 6px;
+    top: 8px;
+    bottom: 8px;
+    overflow: auto;
+}
+
+td.ant-table-cell {
+    padding-top: 0.5em !important; 
+    padding-bottom: 0.5em !important;
+    vertical-align: text-top;
+}
+
+.ant-table-content {
+    background: #000;
+}

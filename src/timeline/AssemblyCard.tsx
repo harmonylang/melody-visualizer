@@ -1,5 +1,5 @@
 import { BugOutlined } from "@ant-design/icons";
-import { Card, List } from "antd";
+import { Card, List, Tooltip } from "antd";
 import Text from "antd/lib/typography/Text";
 import React from "react";
 import { CharmonyExecutedCode } from "../types/CharmonyJson";
@@ -46,17 +46,18 @@ class AssemblyCard extends React.Component<AssemblyCardProps, AssemblyCardState>
                     className="card-list"
                     dataSource={this.props.code}
                     renderItem={item => <>
-                        <List.Item className="assembly-list-item" key={item.file + item.line}>
-                            <Text type="warning">
-                                {item.file.substring(item.file.lastIndexOf('/') + 1)}:{item.line} —
-                            </Text>
-                            <Text type="secondary" className="assembly-list-text">{item.sourceCode}</Text>
-                        </List.Item>
                         {item.assembly.map((c, idx) => {
                             const pc = idx + item.initialPc;
                             return <List.Item className="assembly-list-item" key={pc}>
                                 <div ref={this.state.listRefs.get(pc)}>
-                                <Text disabled>{pc}</Text> {c.assembly}
+                                <Tooltip
+                                    title={item.sourceCode}>
+                                    <Text disabled>{pc}</Text>&nbsp;
+                                    {c.assembly}
+                                    <Text type="warning" className="assembly-list-text">
+                                        {item.file.substring(item.file.lastIndexOf('/') + 1).replace(".hny", "")}:{item.line}
+                                    </Text>
+                                </Tooltip>
                                 </div>
                             </List.Item>
                         })}

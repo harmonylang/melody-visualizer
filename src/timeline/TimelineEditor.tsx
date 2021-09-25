@@ -73,6 +73,7 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
         });
 
         this.processBarsRef = React.createRef();
+        this.onClickTimeline = this.onClickTimeline.bind(this);
 
         this.state = {
             playing: false,
@@ -85,15 +86,16 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
     tick() {
         let oldValue = this.props.stepValue;
         if (this.state.playing) {
-            if (oldValue < this.state.totalDuration) {
+            if (oldValue + 1 < this.state.totalDuration) {
                 this.processBarsRef.current?.scrollTo({
                     top: 0,
-                    left: oldValue * BAR_LEN_FACTOR,
+                    left: (oldValue + 1) * BAR_LEN_FACTOR,
                     behavior: 'auto'
-                  });
-                this.props.setStepValue(oldValue + 1);
-            } else
+                });
+                this.setStepValue(oldValue + 1);
+            } else {
                 this.setState({ playing: false });
+            }
         }
 
     }
@@ -101,17 +103,28 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
     stepForwards() {
         let oldValue = this.props.stepValue;
         if (oldValue < this.state.totalDuration)
-            this.props.setStepValue(oldValue + 1);
+            this.setStepValue(oldValue + 1);
     }
 
     stepBackwards() {
         let oldValue = this.props.stepValue;
         if (oldValue > 0)
-            this.props.setStepValue(oldValue - 1);
+            this.setStepValue(oldValue - 1);
     }
 
     togglePlaying() {
         this.setState({ playing: !this.state.playing });
+    }
+
+    setStepValue(value: number){
+        this.props.setStepValue(value);
+    }
+
+    onClickTimeline(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
+        e.preventDefault();
+        let targetElement = (e.currentTarget as HTMLElement)
+        let rect = targetElement.getBoundingClientRect();
+        this.setStepValue(Math.round((e.clientX - rect.left + targetElement.scrollLeft) / BAR_LEN_FACTOR));
     }
 
     componentDidMount() {
@@ -125,7 +138,7 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
 
     render() {
         return (
-            <Col>
+            <Col className="timeline-card">
                 <Row className="timeline-bar">
                     <Button shape="circle"
                         icon={<StepBackwardOutlined />}
@@ -141,23 +154,23 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
                         size="middle"
                         className="timeline-bar-btn"
                         onClick={() => this.stepForwards()} />
-                    <Slider onChange={(v) => this.props.setStepValue(v)} value={this.props.stepValue} style={{ flexGrow: 1 }} max={this.state.totalDuration} className="timeline-slider" />
+                    <Slider onChange={(v) => this.setStepValue(v)} value={this.props.stepValue} style={{ flexGrow: 1 }} max={this.state.totalDuration} className="timeline-slider" />
                 </Row>
-                <Row style={{ overflowY: 'scroll' }}>
+                <Row className="timeline-holder">
                     <Col span={6}>
                         <List
-                            bordered
+                            bordered={false}
                             dataSource={this.state.processLabels}
                             renderItem={item => (
-                                <List.Item style={{ height: '3em' }}>
+                                <List.Item className="timeline-process-title">
                                     {item}
                                 </List.Item>
                             )}
                         />
                     </Col>
-                    <Col span={18} ref={this.processBarsRef} style={{ overflowX: 'scroll' }}>
+                    <Col span={18} ref={this.processBarsRef} style={{ overflowX: 'scroll' }} onMouseDown={this.onClickTimeline}>
                         <List
-                            bordered
+                            bordered={false}
                             dataSource={this.state.processBars}
                             style={{ width: this.state.totalDuration * BAR_LEN_FACTOR }}
                             renderItem={item => (
@@ -174,6 +187,7 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
                                 </List.Item>
                             )}
                         />
+                        <div className="timeline-indicator-bar" style={{ left: this.props.stepValue * BAR_LEN_FACTOR }} />
                     </Col>
                 </Row>
             </Col>

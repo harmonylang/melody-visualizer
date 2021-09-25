@@ -1,6 +1,8 @@
 .timeline-bar {
-    margin-top: 0.4em;
-    margin-bottom: 0.4em;
+    padding-top: 0.35em;
+    padding-bottom: 0.35em;
+    height: 3em;
+    border-bottom: 1px solid #303030!important;
 }
 
 .timeline-bar-btn {
@@ -10,4 +12,38 @@
 .timeline-slider {
     margin-left: 1em;
     margin-right: 1em;
+}
+
+.timeline-card {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+.timeline-indicator-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background-color: aliceblue;
+    overflow: auto;
+}
+
+.timeline-holder {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 3em;
+    bottom: 0;
+    overflow: auto;
+}
+
+.timeline-process-title {
+    height: 3em;
+    padding-left: 1.5em;
+    border-right: 1px solid #303030!important;
 }
