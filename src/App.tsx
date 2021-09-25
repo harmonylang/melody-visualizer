@@ -1,25 +1,40 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './App.css';
+import Timeline from './timeline/Timeline';
 
 function App() {
+  const [harmonyData, setHarmonyData] = useState(undefined);
+
+  React.useEffect(() => {
+    const handler = (event: MessageEvent<any>) => {
+      const { command, jsonData } = event.data; // The command and JSON data our extension sent
+      switch (command) {
+        case 'load':
+          console.log(jsonData);
+          setHarmonyData(jsonData);
+          break;
+        case 'message':
+          break;
+        case 'start':
+          break;
+      }
+    }
+
+    window.addEventListener("message", handler);
+
+    // eslint-disable-next-line no-restricted-globals
+    parent.window.postMessage({ command: "iframeReady", data: null }, "*");
+
+    // clean up
+    return () => window.removeEventListener("message", handler)
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      {harmonyData &&
+        <Timeline harmonyData={harmonyData} />
+      }
+    </>
   );
 }
 
