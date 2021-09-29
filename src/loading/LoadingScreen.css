@@ -27,11 +27,11 @@
 .harmony-icon-subtitle {
   margin: 0;
   position: absolute;
-  top: calc(40% + 5.5em);
+  top: calc(40% + 5em);
   left: 50%;
   text-align: center;
-  -ms-transform: translate(-50%, -50%);
-  transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
   font-size: 12pt;
   font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
