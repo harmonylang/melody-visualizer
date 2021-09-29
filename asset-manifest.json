@@ -1,25 +1,26 @@
 {
   "files": {
-    "main.css": "/melody-visualizer/static/css/main.de8dc82d.chunk.css",
-    "main.js": "/melody-visualizer/static/js/main.66972106.chunk.js",
-    "main.js.map": "/melody-visualizer/static/js/main.66972106.chunk.js.map",
-    "runtime-main.js": "/melody-visualizer/static/js/runtime-main.434485ed.js",
-    "runtime-main.js.map": "/melody-visualizer/static/js/runtime-main.434485ed.js.map",
+    "main.css": "/melody-visualizer/static/css/main.051497e2.chunk.css",
+    "main.js": "/melody-visualizer/static/js/main.c3ecf69d.chunk.js",
+    "main.js.map": "/melody-visualizer/static/js/main.c3ecf69d.chunk.js.map",
+    "runtime-main.js": "/melody-visualizer/static/js/runtime-main.cc9a681e.js",
+    "runtime-main.js.map": "/melody-visualizer/static/js/runtime-main.cc9a681e.js.map",
     "static/css/2.0f750d82.chunk.css": "/melody-visualizer/static/css/2.0f750d82.chunk.css",
-    "static/js/2.807b1fcc.chunk.js": "/melody-visualizer/static/js/2.807b1fcc.chunk.js",
-    "static/js/2.807b1fcc.chunk.js.map": "/melody-visualizer/static/js/2.807b1fcc.chunk.js.map",
-    "static/js/3.f52264d8.chunk.js": "/melody-visualizer/static/js/3.f52264d8.chunk.js",
-    "static/js/3.f52264d8.chunk.js.map": "/melody-visualizer/static/js/3.f52264d8.chunk.js.map",
+    "static/js/2.5973caf8.chunk.js": "/melody-visualizer/static/js/2.5973caf8.chunk.js",
+    "static/js/2.5973caf8.chunk.js.map": "/melody-visualizer/static/js/2.5973caf8.chunk.js.map",
+    "static/js/3.e0573936.chunk.js": "/melody-visualizer/static/js/3.e0573936.chunk.js",
+    "static/js/3.e0573936.chunk.js.map": "/melody-visualizer/static/js/3.e0573936.chunk.js.map",
     "index.html": "/melody-visualizer/index.html",
     "static/css/2.0f750d82.chunk.css.map": "/melody-visualizer/static/css/2.0f750d82.chunk.css.map",
-    "static/css/main.de8dc82d.chunk.css.map": "/melody-visualizer/static/css/main.de8dc82d.chunk.css.map",
-    "static/js/2.807b1fcc.chunk.js.LICENSE.txt": "/melody-visualizer/static/js/2.807b1fcc.chunk.js.LICENSE.txt"
+    "static/css/main.051497e2.chunk.css.map": "/melody-visualizer/static/css/main.051497e2.chunk.css.map",
+    "static/js/2.5973caf8.chunk.js.LICENSE.txt": "/melody-visualizer/static/js/2.5973caf8.chunk.js.LICENSE.txt",
+    "static/media/logo.da5a3132.svg": "/melody-visualizer/static/media/logo.da5a3132.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.434485ed.js",
+    "static/js/runtime-main.cc9a681e.js",
     "static/css/2.0f750d82.chunk.css",
-    "static/js/2.807b1fcc.chunk.js",
-    "static/css/main.de8dc82d.chunk.css",
-    "static/js/main.66972106.chunk.js"
+    "static/js/2.5973caf8.chunk.js",
+    "static/css/main.051497e2.chunk.css",
+    "static/js/main.c3ecf69d.chunk.js"
   ]
 }
