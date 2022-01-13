@@ -7,6 +7,7 @@ import './AssemblyCard.css'
 
 interface AssemblyCardState {
     listRefs: Map<number, React.RefObject<any>>;
+    highlightRef: React.RefObject<any>;
 }
 
 interface AssemblyCardProps {
@@ -22,7 +23,8 @@ class AssemblyCard extends React.Component<AssemblyCardProps, AssemblyCardState>
             listRefs: this.props.code.reduce((acc, value) => {
                 acc.set(value.initialPc, React.createRef());
                 return acc;
-            }, new Map())
+            }, new Map()),
+            highlightRef: React.createRef()
         }
     }
 
@@ -36,6 +38,7 @@ class AssemblyCard extends React.Component<AssemblyCardProps, AssemblyCardState>
             behavior: 'auto',
             block: 'start',
         });
+        this.state.highlightRef.current.style.top = (pcValue * 25) + "px";
     }
 
     render() {
@@ -63,6 +66,7 @@ class AssemblyCard extends React.Component<AssemblyCardProps, AssemblyCardState>
                         })}
                     </>}
                 />
+                <div ref={this.state.highlightRef} style={{ position: "absolute", top: 0, width: "100%", height: 25, zIndex: 8, backgroundColor: "#ffffff20"}}></div>
             </Card>
         );
     }
