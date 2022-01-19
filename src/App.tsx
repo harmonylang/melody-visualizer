@@ -5,6 +5,7 @@ import Timeline from './timeline/Timeline';
 
 function App() {
   const [harmonyData, setHarmonyData] = useState(undefined);
+  const [harmonyGV, setHarmonyGV] = useState(undefined);
   const [harmonyMsg, setHarmonyMsg] = useState(undefined);
   const [isFadingOut, setIsFadingOut] = useState(false);
 
@@ -17,6 +18,13 @@ function App() {
           setIsFadingOut(true);
           setTimeout(() => setIsFadingOut(false), 200);
           setHarmonyData(jsonData);
+          break;
+        case 'load-graph':
+          // Ignore graphs of size less than two nodes
+          const lines = (jsonData.match(/\n/g) || '').length + 1;
+          if (lines > 5) {
+            setHarmonyGV(jsonData);
+          }
           break;
         case 'message':
           setHarmonyMsg(jsonData);
@@ -39,7 +47,7 @@ function App() {
     <div className={isFadingOut ? "main-fadeout" : "main-fadein"}>
       {(harmonyData && !isFadingOut)
         ? <Timeline harmonyData={harmonyData} />
-        : <LoadingScreen key={harmonyMsg} displayStr={harmonyMsg} />}
+        : <LoadingScreen key={harmonyMsg} displayStr={harmonyMsg} harmonyGV={harmonyGV} />}
     </div>
   );
 }

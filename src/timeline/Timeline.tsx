@@ -50,14 +50,14 @@ class Timeline extends React.Component<TimelineProps, TimelineState> {
         return (
             <Layout className="fullscreen" >
                 <Content className="fullscreen">
-                    <SplitPane split="horizontal" minSize={300} defaultSize={570}>
+                    <SplitPane split="horizontal" minSize={300} defaultSize={"70%"}>
                         <SplitPane split="vertical" minSize={100} defaultSize={300}>
                             <div>
                                 <PageHeader
                                     className="issue-header"
                                     title={<><ExclamationCircleOutlined />&nbsp;&nbsp;{this.props.harmonyData.issue}</>}
                                 />
-                                <SplitPane split="horizontal" minSize={200} defaultSize={300}>
+                                <SplitPane split="horizontal" minSize={200} defaultSize={"60%"}>
                                     <AssemblyCard code={this.props.harmonyData.executedCode} pcValue={this.state.currentPc} />
                                     <SharedVariableCard
                                         key={JSON.stringify(this.state.currentSlice.sharedValues)}
