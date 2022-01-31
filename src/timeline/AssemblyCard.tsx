@@ -53,20 +53,20 @@ class AssemblyCard extends React.Component<AssemblyCardProps, AssemblyCardState>
                             const pc = idx + item.initialPc;
                             return <List.Item className="assembly-list-item" key={pc}>
                                 <div ref={this.state.listRefs.get(pc)}>
-                                <Tooltip
-                                    title={item.sourceCode}>
                                     <Text disabled>{pc}</Text>&nbsp;
                                     {c.assembly}
-                                    <Text type="warning" className="assembly-list-text">
-                                        {item.file.substring(item.file.lastIndexOf('/') + 1).replace(".hny", "")}:{item.line}
-                                    </Text>
-                                </Tooltip>
+                                    <Tooltip
+                                        title={item.sourceCode}>
+                                        <Text type="warning" className="assembly-list-text">
+                                            {item.file.substring(item.file.lastIndexOf('/') + 1).replace(".hny", "")}:{item.line}
+                                        </Text>
+                                    </Tooltip>
                                 </div>
                             </List.Item>
                         })}
                     </>}
                 />
-                <div ref={this.state.highlightRef} style={{ position: "absolute", top: 0, width: "100%", height: 25, zIndex: 8, backgroundColor: "#ffffff20"}}></div>
+                <div ref={this.state.highlightRef} style={{ position: "absolute", top: 0, width: "100%", height: 25, zIndex: 8, backgroundColor: "#ffffff20" }}></div>
             </Card>
         );
     }

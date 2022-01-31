@@ -88,15 +88,21 @@ class StackTraceTable extends React.Component<StackTraceTableProps, StackTraceTa
                                 return <PlayCircleTwoTone twoToneColor="#7cb305" />;
                             case "running atomic":
                                 return <PlayCircleTwoTone twoToneColor="#7cb305" />;
+                            case "running atomic read-only":
+                                return <PlayCircleTwoTone twoToneColor="#7cb305" />;
                             case "runnable":
                                 return <CheckCircleTwoTone twoToneColor="#7cb305" />;
                             case "runnable atomic":
+                                return <CheckCircleTwoTone twoToneColor="#7cb305" />;
+                            case "runnable atomic read-only":
                                 return <CheckCircleTwoTone twoToneColor="#7cb305" />;
                             case "failed":
                                 return <CloseSquareTwoTone twoToneColor="#a8071a" />;
                             case "blocked":
                                 return <MinusCircleTwoTone twoToneColor="#a8071a" />;
                             case "blocked atomic":
+                                return <MinusCircleTwoTone twoToneColor="#a8071a" />;
+                            case "blocked atomic read-only":
                                 return <MinusCircleTwoTone twoToneColor="#a8071a" />;
                             case "terminated":
                                 return <CheckSquareTwoTone twoToneColor="#7cb305" />;

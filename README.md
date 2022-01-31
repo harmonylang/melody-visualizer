@@ -1,8 +1,6 @@
-# Getting Started with Create React App
+# Melody Visualizer for HarmonyLang
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
-## Available Scripts
+## Development
 
 In the project directory, you can run:
 
@@ -41,6 +39,6 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 
 ## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+You can learn more about Harmony at https://harmony.cs.cornell.edu
 
 To learn React, check out the [React documentation](https://reactjs.org/).

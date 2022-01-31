@@ -19,6 +19,7 @@ interface TimelineEditorProps {
 
 interface TimelineEditorState {
     playing: boolean;
+    dragging: boolean;
     totalDuration: number;
     processLabels: String[];
     processBars: ProcessBar[];
@@ -77,6 +78,7 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
 
         this.state = {
             playing: false,
+            dragging: false,
             totalDuration: totalDuration,
             processLabels: processLabels,
             processBars: processBars
@@ -122,9 +124,25 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
 
     onClickTimeline(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
         e.preventDefault();
+        this.setState({ dragging: true });
+        this.setState({ playing: false });
         let targetElement = (e.currentTarget as HTMLElement)
         let rect = targetElement.getBoundingClientRect();
         this.setStepValue(Math.round((e.clientX - rect.left + targetElement.scrollLeft) / BAR_LEN_FACTOR));
+    }
+
+    onDragTimeline(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
+        e.preventDefault();
+        if (this.state.dragging){
+            let targetElement = (e.currentTarget as HTMLElement)
+            let rect = targetElement.getBoundingClientRect();
+            this.setStepValue(Math.round((e.clientX - rect.left + targetElement.scrollLeft) / BAR_LEN_FACTOR));
+        }
+    }
+
+    onUnclickTimeline(e: React.MouseEvent<HTMLDivElement, MouseEvent>){
+        e.preventDefault();
+        this.setState({ dragging: false });
     }
 
     componentDidMount() {
@@ -168,7 +186,14 @@ class TimelineEditor extends React.Component<TimelineEditorProps, TimelineEditor
                             )}
                         />
                     </Col>
-                    <Col span={18} ref={this.processBarsRef} style={{ overflowX: 'scroll' }} onMouseDown={this.onClickTimeline}>
+                    <Col 
+                        span={18} 
+                        ref={this.processBarsRef} 
+                        style={{ overflowX: 'scroll' }} 
+                        onMouseUp={this.onUnclickTimeline.bind(this)}
+                        onMouseLeave={this.onUnclickTimeline.bind(this)}
+                        onMouseMove={this.onDragTimeline.bind(this)}
+                        onMouseDown={this.onClickTimeline.bind(this)}>
                         <List
                             bordered={false}
                             dataSource={this.state.processBars}

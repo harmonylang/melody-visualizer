@@ -32,7 +32,10 @@ class LoadingScreen extends React.Component<LoadingScreenProps, LoadingScreenSta
             "Simulating parallel universes...",
             "Revising the halting problem...",
             "Adding the 51st state...",
-            "Testing for the delta invariant..."
+            "Testing for the delta invariant...",
+            "Modeling ecological collapse...",
+            "Guaranteeing money back...",
+            "Some assembly required..."
         ];
         return (<>
             {(this.state.displayGraph) ?
