@@ -20,11 +20,7 @@ function App() {
           setHarmonyData(jsonData);
           break;
         case 'load-graph':
-          // Ignore graphs of size less than two nodes
-          const lines = (jsonData.match(/\n/g) || '').length + 1;
-          if (lines > 5) {
             setHarmonyGV(jsonData);
-          }
           break;
         case 'message':
           setHarmonyMsg(jsonData);
@@ -47,7 +43,7 @@ function App() {
     <div className={isFadingOut ? "main-fadeout" : "main-fadein"}>
       {(harmonyData && !isFadingOut)
         ? <Timeline harmonyData={harmonyData} />
-        : <LoadingScreen key={harmonyMsg} displayStr={harmonyMsg} harmonyGV={harmonyGV} />}
+        : <LoadingScreen displayStr={harmonyMsg} harmonyGV={harmonyGV} />}
     </div>
   );
 }

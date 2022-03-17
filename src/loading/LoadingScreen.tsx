@@ -26,6 +26,17 @@ class LoadingScreen extends React.Component<LoadingScreenProps, LoadingScreenSta
         }
     }
 
+    shouldComponentUpdate(nextProps: LoadingScreenProps, _: any) {
+        if ((this.props.harmonyGV !== nextProps.harmonyGV) || (this.props.displayStr !== nextProps.displayStr)) {
+            this.setState({
+                displayStr: nextProps.displayStr,
+                harmonyGV: nextProps.harmonyGV,
+                displayGraph: (this.props.harmonyGV !== nextProps.harmonyGV)
+            });
+        }
+        return true;
+    }
+
     render() {
         const loadingFun = [
             "Strumming threads...",
@@ -46,7 +57,16 @@ class LoadingScreen extends React.Component<LoadingScreenProps, LoadingScreenSta
                 <>
                     <img src={HarmonyIcon} alt="Harmony Logo" width={128} height={128} className="harmony-icon" />
                     <h2 className="harmony-icon-subtitle">{this.state.displayStr ?? loadingFun[Math.floor(Math.random() * loadingFun.length)]}</h2>
-                    {(this.state.harmonyGV) && <Button className="see-graph-btn" onClick={() => { this.setState({ displayGraph: true }) }}>See Graph</Button>}
+                    {(this.state.harmonyGV) ?
+                        <Button className="see-graph-btn" onClick={() => { this.setState({ displayGraph: true }) }}>
+                            See Graph
+                        </Button> : (this.state.displayStr) &&
+                        <Button className="see-graph-btn" onClick={() => {
+                            // eslint-disable-next-line no-restricted-globals
+                            parent.window.postMessage({ command: "requestGraph", data: null }, "*");
+                        }}>
+                            Generate Graph
+                        </Button>}
                     <svg className="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
                         <defs>
                             <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
