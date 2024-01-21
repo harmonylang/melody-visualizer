@@ -3,6 +3,7 @@ import './LoadingScreen.css'
 import GraphViewer from '../graphviewer/GraphViewer';
 import HarmonyIcon from '../logo.svg'
 import { Button } from "antd";
+import Markdown from "react-markdown";
 
 interface LoadingScreenState {
     displayStr?: string;
@@ -56,8 +57,10 @@ class LoadingScreen extends React.Component<LoadingScreenProps, LoadingScreenSta
                 </> :
                 <>
                     <img src={HarmonyIcon} alt="Harmony Logo" width={128} height={128} className="harmony-icon" />
-                    <h2 className="harmony-icon-subtitle">{this.state.displayStr ?? loadingFun[Math.floor(Math.random() * loadingFun.length)]}</h2>
-                    {(this.state.harmonyGV) ?
+                    
+                    <h2 className="harmony-icon-subtitle">
+                        <Markdown>{this.state.displayStr ?? loadingFun[Math.floor(Math.random() * loadingFun.length)]}</Markdown>
+                        {(this.state.harmonyGV) ?
                         <Button className="see-graph-btn" onClick={() => { this.setState({ displayGraph: true }) }}>
                             See Graph
                         </Button> : (this.state.displayStr) &&
@@ -67,6 +70,8 @@ class LoadingScreen extends React.Component<LoadingScreenProps, LoadingScreenSta
                         }}>
                             Generate Graph
                         </Button>}
+                    </h2>
+                    
                     <svg className="hero-waves" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28 " preserveAspectRatio="none">
                         <defs>
                             <path id="wave-path" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />

@@ -53,7 +53,7 @@ class AssemblyCard extends React.Component<AssemblyCardProps, AssemblyCardState>
                             const pc = idx + item.initialPc;
                             return <List.Item className="assembly-list-item" key={pc}>
                                 <div ref={this.state.listRefs.get(pc)}>
-                                    <Text disabled>{pc}</Text>&nbsp;
+                                    <Text className="assembly-line-number" disabled>{pc}</Text>&nbsp;
                                     {c.assembly}
                                     <Tooltip
                                         title={item.sourceCode}>

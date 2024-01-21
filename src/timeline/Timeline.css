@@ -1,13 +1,19 @@
 .fullscreen {
     width: 100%;
     height: 100%;
+    background-color: rgb(20, 20, 20);
+}
+
+.ant-drawer-body {
+    color: rgb(235, 235, 235);
 }
 
 .issue-header {
-    padding-top: 6px;
-    padding-bottom: 6px;
-    padding-left: 16px;
-    padding-right: 16px;
+    position: absolute;
+    z-index: 10;
+    left: 6px;
+    width: calc(100% - 12px);
+    top: 8px;
 }
 
 .ant-card-body {

@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import './App.css';
 import LoadingScreen from './loading/LoadingScreen';
 import Timeline from './timeline/Timeline';
+import { ConfigProvider } from 'antd';
+import { darkTheme } from '@ant-design/compatible';
 
 function App() {
   const [harmonyData, setHarmonyData] = useState(undefined);
@@ -20,7 +22,7 @@ function App() {
           setHarmonyData(jsonData);
           break;
         case 'load-graph':
-            setHarmonyGV(jsonData);
+          setHarmonyGV(jsonData);
           break;
         case 'message':
           setHarmonyMsg(jsonData);
@@ -40,11 +42,13 @@ function App() {
   }, []);
 
   return (
-    <div className={isFadingOut ? "main-fadeout" : "main-fadein"}>
-      {(harmonyData && !isFadingOut)
-        ? <Timeline harmonyData={harmonyData} />
-        : <LoadingScreen displayStr={harmonyMsg} harmonyGV={harmonyGV} />}
-    </div>
+    <ConfigProvider theme={darkTheme}>
+      <div className={isFadingOut ? "main-fadeout" : "main-fadein"}>
+        {(harmonyData && !isFadingOut)
+          ? <Timeline displayStr={harmonyMsg} harmonyData={harmonyData} />
+          : <LoadingScreen displayStr={harmonyMsg} harmonyGV={harmonyGV} />}
+      </div>
+    </ConfigProvider>
   );
 }
 

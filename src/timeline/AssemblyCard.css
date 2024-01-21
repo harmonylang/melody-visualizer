@@ -28,3 +28,7 @@
     bottom: 0;
     overflow: auto;
 }
+
+.assembly-line-number {
+    color: rgba(255, 255, 255, 0.85) !important;
+}
